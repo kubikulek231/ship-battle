@@ -1,0 +1,28 @@
+﻿@using ShipBattle
+@page "/"
+<dif class="game">
+<div class="header"><h3>ShipBattle</h3></div>
+    <div class="header"><h3>TEST</h3></div>
+<div class="game-board-grid">
+@for (int col = 0; col < 10; col++)
+{
+    <div class="game-board-row">
+    @for (int row = 0; row < 10; row++)
+    {
+        var temp_col = col;
+        var temp_row = row;
+
+        <div class="game-board-square" @onclick="@(e => SquareClick(e, col, row))">
+        </div>
+    }
+    </div>
+
+    }
+    </div>
+</dif>
+@code {
+    public void SquareClick(MouseEventArgs eventArgs, int col, int row)
+    {
+        Console.WriteLine("CLICK");
+    }
+}
