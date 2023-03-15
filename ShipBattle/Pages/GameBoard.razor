@@ -1,4 +1,4 @@
-﻿
+﻿@using ShipBattle.Data
 @page "/"
 <dif class="game">
 <div class="header"><h3>ShipBattle</h3></div>
@@ -19,15 +19,15 @@
 
     }
 
-        @foreach (var ship in ships)
+        @foreach (Ship ship in ships)
         {
-            <div class="ship @ship.CssShipName().ToLower()" style="--coorx: @ship.CssOriginCol();
+            <div class="ship @ship.Name().ToLower()" style="--coorx: @ship.CssOriginCol();
             --coory: @ship.CssOriginRow(); --rotate: @ship.CssRotate()"></div>
         }
 
 </div>
 </dif>
-@using ShipBattle.Data
+
 @code {
     List<Ship> ships = new List<Ship>();
     protected override void OnInitialized()
@@ -42,5 +42,22 @@
     public void SquareClick(MouseEventArgs eventArgs, int col, int row)
     {
         Console.WriteLine("CLICK: " + "col: " + col + " row: " + row);
+        bool hit = false;
+        foreach (Ship ship in ships)
+        {
+            if (ship.IsHit(col, row)) {
+                Console.WriteLine("HIT!");
+                hit = true;
+                if (ship.IsSunk())
+                {
+                    Console.WriteLine(ship.Name() + " SUNK!");
+                }
+                break;
+            }
+        }
+        if (!hit)
+        {
+            Console.WriteLine("MISS!");
+        }
     }
 }
