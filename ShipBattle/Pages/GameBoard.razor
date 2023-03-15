@@ -1,4 +1,4 @@
-﻿@using ShipBattle
+﻿
 @page "/"
 <dif class="game">
 <div class="header"><h3>ShipBattle</h3></div>
@@ -12,17 +12,35 @@
         var temp_col = col;
         var temp_row = row;
 
-        <div class="game-board-square" @onclick="@(e => SquareClick(e, col, row))">
+        <div class="game-board-square" @onclick="@(e => SquareClick(e, temp_col, temp_row))">
         </div>
     }
     </div>
 
     }
-    </div>
+
+        @foreach (var ship in ships)
+        {
+            <div class="ship @ship.CssShipName().ToLower()" style="--coorx: @ship.CssOriginCol();
+            --coory: @ship.CssOriginRow(); --rotate: @ship.CssRotate()"></div>
+        }
+
+</div>
 </dif>
+@using ShipBattle.Data
 @code {
+    List<Ship> ships = new List<Ship>();
+    protected override void OnInitialized()
+    {
+        ships.Add(new Ship(Ship.ShipType.Carrier, 0, 0, false));
+        ships.Add(new Ship(Ship.ShipType.Battleship, 2, 2, true));
+        ships.Add(new Ship(Ship.ShipType.Cruiser, 4, 4, false));
+        ships.Add(new Ship(Ship.ShipType.Submarine, 6, 6, false));
+        ships.Add(new Ship(Ship.ShipType.Destroyer, 8, 8, true));
+    }
+
     public void SquareClick(MouseEventArgs eventArgs, int col, int row)
     {
-        Console.WriteLine("CLICK");
+        Console.WriteLine("CLICK: " + "col: " + col + " row: " + row);
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\source\\repos\\ShipBattle\\ShipBattle\\ShipBattle.csproj": {}
+    "C:\\Users\\Administrator\\git\\ship-battle\\ShipBattle\\ShipBattle.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\source\\repos\\ShipBattle\\ShipBattle\\ShipBattle.csproj": {
+    "C:\\Users\\Administrator\\git\\ship-battle\\ShipBattle\\ShipBattle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\ShipBattle\\ShipBattle\\ShipBattle.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\git\\ship-battle\\ShipBattle\\ShipBattle.csproj",
         "projectName": "ShipBattle",
-        "projectPath": "C:\\Users\\Administrator\\source\\repos\\ShipBattle\\ShipBattle\\ShipBattle.csproj",
+        "projectPath": "C:\\Users\\Administrator\\git\\ship-battle\\ShipBattle\\ShipBattle.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\source\\repos\\ShipBattle\\ShipBattle\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\git\\ship-battle\\ShipBattle\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -62,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

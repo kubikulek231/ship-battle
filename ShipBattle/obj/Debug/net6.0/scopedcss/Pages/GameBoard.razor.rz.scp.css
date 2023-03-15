@@ -1,34 +1,98 @@
+:root[b-awq8jdwd4s] {
+    --coorx: 0%;
+    --coory: 0%;
+    --rotate: 0deg;
+}
+
 h3[b-awq8jdwd4s] {
     color: darkblue;
     text-align: center;
 }
+
 .game[b-awq8jdwd4s] {
-    height: 90vmin;
+    position: relative;
+    padding-bottom: 10px;
+    background-color: green;
 }
+
 .header[b-awq8jdwd4s] {
     margin: auto;
 }
+
 .game-board-grid[b-awq8jdwd4s] {
+    min-width: 400px;
+    min-height: 400px;
     display: grid;
+    position: relative;
     width: fit-content;
     height: fit-content;
     grid-auto-flow: column;
     margin: auto;
-    padding-bottom: 10px;
+    background-color: red;
 }
+
 .game-board-row[b-awq8jdwd4s] {
     background-color: black;
-    width: fit-content;
-    height: fit-content;
-
 }
+
 .game-board-square[b-awq8jdwd4s] {
+    min-height: 40px;
     height: 8vmin;
     aspect-ratio: 1/1;
-    min-height: 40px;
-    min-width: 40px;
-    padding: 10px;
     border: 1px solid black;
     background-color: grey;
 }
 
+.ship[b-awq8jdwd4s] {
+    position: absolute;
+    left: var(--coorx);
+    top: var(--coory);
+    background-color: dodgerblue;
+    pointer-events: none;
+}
+
+    .ship.carrier[b-awq8jdwd4s] {
+        transform-origin: 50% 10%;
+        transform: rotate(var(--rotate));
+        min-height: 200px;
+        min-width: 40px;
+        width: 8vmin;
+        aspect-ratio: 1/5;
+    }
+
+    .ship.battleship[b-awq8jdwd4s] {
+        transform-origin: 50% 12.5%;
+        transform: rotate(var(--rotate));
+        min-height: 160px;
+        min-width: 40px;
+        width: 8vmin;
+        aspect-ratio: 1/4;
+    }
+
+    .ship.cruiser[b-awq8jdwd4s] {
+        transform-origin: 50% 16.666666%;
+        transform: rotate(var(--rotate));
+        min-height: 120px;
+        min-width: 40px;
+        width: 8vmin;
+        aspect-ratio: 1/3;
+    }
+
+    .ship.submarine[b-awq8jdwd4s] {
+        transform-origin: 50% 16.666666%;
+        transform: rotate(var(--rotate));
+        min-height: 80px;
+        min-width: 40px;
+        width: 8vmin;
+        aspect-ratio: 1/3;
+    }
+
+
+    .ship.destroyer[b-awq8jdwd4s] {
+        transform-origin: 50% 25%;
+        transform: rotate(var(--rotate));
+        min-height: 80px;
+        min-width: 40px;
+        width: 8vmin;
+        aspect-ratio: 1/2;
+    }
