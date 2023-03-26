@@ -6,6 +6,8 @@
 
 main[b-ri3dppbh1o] {
     flex: 1;
+    background: rgb(15,15,15);
+    background: linear-gradient(0deg, rgba(15,15,15,1) 0%, rgba(34,34,34,1) 100%);
 }
 
 .sidebar[b-ri3dppbh1o] {
@@ -13,7 +15,7 @@ main[b-ri3dppbh1o] {
 }
 
 .top-row[b-ri3dppbh1o] {
-    background-color: #f7f7f7;
+    background-color: black;
     border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
     height: 3.5rem;
