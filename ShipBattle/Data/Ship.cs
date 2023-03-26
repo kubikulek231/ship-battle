@@ -2,7 +2,7 @@
 {
     public class Ship
     {
-        public enum ShipType : int
+        public enum ShipType
         {
             Carrier,
             Battleship,
@@ -15,7 +15,7 @@
         private int OriginCol { get; set; }
         private int OriginRow { get; }
         private bool Rotate { get; set; }
-        
+
         private int Hits { get; set; }
 
         public Ship(ShipType type, int origincol, int originrow, bool rotate)
@@ -26,7 +26,7 @@
             Rotate = rotate;
             Hits = 0;
         }
-        
+
         public string CssOriginCol()
         {
             return (OriginCol * 10).ToString() + "%";

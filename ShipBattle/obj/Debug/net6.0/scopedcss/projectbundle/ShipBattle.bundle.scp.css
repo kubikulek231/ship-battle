@@ -6,14 +6,13 @@
 }
 
 h3[b-awq8jdwd4s] {
-    color: darkblue;
+    color: #41A317;
     text-align: center;
 }
 
 .game[b-awq8jdwd4s] {
     position: relative;
     padding-bottom: 10px;
-    background-color: green;
 }
 
 .header[b-awq8jdwd4s] {
@@ -29,27 +28,28 @@ h3[b-awq8jdwd4s] {
     height: fit-content;
     grid-auto-flow: column;
     margin: auto;
-    background-color: red;
+    border: 1px solid #41A317;
 }
 
 .game-board-row[b-awq8jdwd4s] {
-    background-color: black;
+    background-color: #41A317;
 }
 
 .game-board-square[b-awq8jdwd4s] {
     min-height: 40px;
     height: 8vmin;
     aspect-ratio: 1/1;
-    border: 1px solid black;
-    background-color: grey;
+    border: 1px solid #41A317;
+    background-color: black;
 }
 
 .ship[b-awq8jdwd4s] {
     position: absolute;
     left: var(--coorx);
     top: var(--coory);
-    background-color: dodgerblue;
+    background-color: #333333;
     pointer-events: none;
+    border: 1px solid #41A317;
 }
 
     .ship.carrier[b-awq8jdwd4s] {
@@ -106,6 +106,8 @@ h3[b-awq8jdwd4s] {
 
 main[b-ri3dppbh1o] {
     flex: 1;
+    background: rgb(15,15,15);
+    background: linear-gradient(0deg, rgba(15,15,15,1) 0%, rgba(34,34,34,1) 100%);
 }
 
 .sidebar[b-ri3dppbh1o] {
@@ -113,7 +115,7 @@ main[b-ri3dppbh1o] {
 }
 
 .top-row[b-ri3dppbh1o] {
-    background-color: #f7f7f7;
+    background-color: black;
     border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
     height: 3.5rem;
