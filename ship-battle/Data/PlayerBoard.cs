@@ -41,6 +41,24 @@
             return true;
 
         }
+        public void Populate(int seed)
+        {
+            int[] seedArr = RandArr.GetArrSeed(seed, 10);
+            int seedPos = 0;
+            foreach (Ship.ShipType ship_type in Enum.GetValues(typeof(Ship.ShipType)))
+            {
+                int fall_back = 0;
+                while (true) {
+                    
+                    if (AddShip(new Ship(ship_type, Math.Abs(seedArr[seedPos]-fall_back), 
+                        Math.Abs(seedArr[seedPos+1]-fall_back), Math.Abs(seedArr[seedPos + 0] - fall_back) > 4))) { break; }
+                    seedPos++;
+                    if (seedPos > 8) { seedPos = 0; fall_back += 3; }
+                }
+                
+                
+            }
+        }
         public SquareType Hit(int x, int y)
         {
             if (HitRecord[x, y] != SquareType.Unknown)

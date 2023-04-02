@@ -29,20 +29,21 @@
 
 
 @code {
-    
+
     PlayerBoard playerBoard1 = new PlayerBoard(1);
     protected override void OnInitialized()
     {
-        playerBoard1.AddShip(new Ship(Ship.ShipType.Carrier, 0, 0, false));
+        /*playerBoard1.AddShip(new Ship(Ship.ShipType.Carrier, 0, 0, false));
         playerBoard1.AddShip(new Ship(Ship.ShipType.Battleship, 2, 2, true));
         playerBoard1.AddShip(new Ship(Ship.ShipType.Cruiser, 4, 4, false));
         playerBoard1.AddShip(new Ship(Ship.ShipType.Submarine, 6, 6, false));
-        playerBoard1.AddShip(new Ship(Ship.ShipType.Destroyer, 8, 8, true));
+        playerBoard1.AddShip(new Ship(Ship.ShipType.Destroyer, 8, 8, true));*/
 
-        foreach (int item in RandArr.GetArrAuto(30))
-        {
-            Console.WriteLine(item);
-        }
+        Random autoRand = new Random();
+        int autoRandInt = autoRand.Next();
+        Console.WriteLine(autoRandInt);
+        playerBoard1.Populate(autoRandInt);
+
     }
     
     public void SquareClick(MouseEventArgs eventArgs, int col, int row)

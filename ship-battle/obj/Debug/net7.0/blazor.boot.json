@@ -198,13 +198,13 @@
       "mscorlib.dll": "sha256-3H8zsATEgIcRSRoZhWYtgfKT5VniJvhcYxLruf8koAY=",
       "netstandard.dll": "sha256-bbx+pnJNmXZyPqAgESJnWLJsbfuAl0UflLCdl9slPYE=",
       "System.Private.CoreLib.dll": "sha256-pUYF+nr8SzfBMCLc3FM2i\/YivXJlzztdLin+aUsoqP0=",
-      "ship-battle.dll": "sha256-Kk32olAkENJCFTFdqTHVsDrWqBjPClNrRRItcDHbS5U="
+      "ship-battle.dll": "sha256-YB6C2uLTDPSgdA65WvoEC5Hm1LUP+eUMb6Pqi04CKpE="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "ship-battle.pdb": "sha256-ykWrg\/V1hRQ+C3P\/8BpcB6mUdodnd\/sBbXwNwLP3+r0="
+      "ship-battle.pdb": "sha256-Tfzgk8\/tzdeOWfHl5h5fUpgLEX0y87nNFZqvxLZyZx8="
     },
     "runtime": {
       "dotnet.7.0.4.oem8qcvhdc.js": "sha256-3l+4ZYRWpGMbBjNqeIqO9T\/65euaOzIvRlVX2SySvFQ=",
