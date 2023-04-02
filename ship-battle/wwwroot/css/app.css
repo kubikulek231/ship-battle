@@ -8,10 +8,19 @@ body {
     background-attachment: fixed;
 }
 
+#app {
+    position: relative;
+    margin: auto;
+    margin-top: 10vmin;
+    width: fit-content;
+    height: fit-content;
+}
+
 .loading-spinner {
     position: relative;
-    margin: 50% auto auto auto;
-    
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
     border: 6px solid #555555;
     border-top: 6px solid #ffffff;
     border-radius: 50%;
@@ -29,9 +38,17 @@ body {
     }
 }
 
+.loading {
+    width: fit-content;
+    height: fit-content;
+    position: fixed;
+    top: 50vmin;
+}
+
 .loading-text {
-    text-shadow: 10px;
     position: relative;
+    margin: auto;
+    text-shadow: 10px;
     text-align: center;
     color: white;
     font-family: Tahoma, Geneva, sans-serif;
@@ -40,7 +57,6 @@ body {
     font-style: normal;
     font-variant: normal;
     text-transform: none;
-
 }
 
 h1:focus {
