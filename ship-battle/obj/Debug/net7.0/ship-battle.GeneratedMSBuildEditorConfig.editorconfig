@@ -20,10 +20,6 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/source/repos/ship-battle/ship-battle/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Administrator/source/repos/ship-battle/ship-battle/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -31,3 +27,11 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Administrator/source/repos/ship-battle/ship-battle/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/source/repos/ship-battle/ship-battle/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-t679ll8pal
+
+[C:/Users/Administrator/source/repos/ship-battle/ship-battle/Pages/GameBoardNew.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2FtZUJvYXJkTmV3LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-taxovbgbo8

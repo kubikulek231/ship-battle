@@ -1,0 +1,53 @@
+:root[b-taxovbgbo8] {
+    --origin-col: 0;
+    --origin-row: 0;
+    --end-col: 0;
+    --end-row: 0;
+}
+
+h3[b-taxovbgbo8] {
+    color: #41A317;
+    text-align: center;
+}
+
+.game[b-taxovbgbo8] {
+    padding-top: 10px;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.header[b-taxovbgbo8] {
+    margin: auto;
+}
+
+.game-board-grid[b-taxovbgbo8] {
+    display: grid;
+    min-width: 400px;
+    min-height: 400px;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    border: 1px solid #41A317;
+}
+
+
+.game-board-square[b-taxovbgbo8] {
+    grid-area: var(--origin-row)/var(--origin-col);
+    min-height: 40px;
+    height: 8vmin;
+    aspect-ratio: 1/1;
+    border: 1px solid #41A317;
+    background-color: black;
+}
+
+.ship[b-taxovbgbo8] {
+    border: 1px solid #41A317;
+    pointer-events: none;
+    grid-row-start: var(--origin-row);
+    grid-column-start: var(--origin-col);
+    grid-row-end: var(--end-row);
+    grid-column-end: var(--end-col);
+    background-color: #333333;
+}

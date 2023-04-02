@@ -1,0 +1,69 @@
+﻿@using ship_battle.Data
+
+
+<dif class="game">
+
+    <div class="game-board-grid">
+        @for (int col = 0; col < 10 ; col++)
+        {
+            @for (int row = 0; row < 10; row++)
+            {
+                var temp_col = col+1;
+                var temp_row = row+1;
+
+                <div class="game-board-square" style="--origin-col: @temp_col; --origin-row: @temp_row"
+                @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1))">
+                </div>
+            }
+
+        }
+        @foreach (Ship ship in playerBoard1.Ships)
+        {
+            <div class="ship @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
+            --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
+        }
+
+
+    </div>
+</dif>
+
+
+@code {
+    
+    PlayerBoard playerBoard1 = new PlayerBoard(1);
+    protected override void OnInitialized()
+    {
+        playerBoard1.AddShip(new Ship(Ship.ShipType.Carrier, 0, 0, false));
+        playerBoard1.AddShip(new Ship(Ship.ShipType.Battleship, 2, 2, true));
+        playerBoard1.AddShip(new Ship(Ship.ShipType.Cruiser, 4, 4, false));
+        playerBoard1.AddShip(new Ship(Ship.ShipType.Submarine, 6, 6, false));
+        playerBoard1.AddShip(new Ship(Ship.ShipType.Destroyer, 8, 8, true));
+
+        foreach (int item in RandArr.GetArrAuto(30))
+        {
+            Console.WriteLine(item);
+        }
+    }
+    
+    public void SquareClick(MouseEventArgs eventArgs, int col, int row)
+    {
+        Console.WriteLine("CLICK: " + "col: " + col + " row: " + row);
+        PlayerBoard.SquareType tempSquareType = playerBoard1.Hit(col, row);
+        if (tempSquareType == PlayerBoard.SquareType.NewHit)
+        {
+            Console.WriteLine("HIT");
+            Ship tempShip = playerBoard1.GetShip(col, row);
+            Console.WriteLine(tempShip.Name() + (tempShip.IsSunk() ? " SUNK" : ""));
+        }
+        if (tempSquareType == PlayerBoard.SquareType.NewMiss)
+        {
+            Console.WriteLine("MISS");
+        }
+        if (tempSquareType != PlayerBoard.SquareType.NewMiss
+            && tempSquareType != PlayerBoard.SquareType.NewHit)
+        {
+            Console.WriteLine("You can not hit the same place twice!");
+        }
+
+    }
+}
