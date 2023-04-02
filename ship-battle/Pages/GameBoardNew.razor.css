@@ -38,12 +38,27 @@ h3 {
     min-height: 40px;
     height: 8vmin;
     aspect-ratio: 1/1;
-    border: 1px solid #41A317;
+    border: solid 1px #41A317;
     background-color: black;
 }
+    .game-board-square.hit {
+        margin:auto;
+        border-radius: 50%;
+        border: none;
+        height: 4vmin;
+        opacity: 100%;
+        grid-area: var(--origin-row)/var(--origin-col);
+        background-color: darkorange;
+    }
+    .game-board-square.miss {
+        opacity: 50%;
+        grid-area: var(--origin-row)/var(--origin-col);
+        background-color: #41A317;
+    }
+
 
 .ship {
-    border: 1px solid #41A317;
+    border: solid 1px #41A317;
     pointer-events: none;
     grid-row-start: var(--origin-row);
     grid-column-start: var(--origin-col);

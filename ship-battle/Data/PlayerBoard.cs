@@ -1,4 +1,6 @@
-﻿namespace ship_battle.Data
+﻿using static ship_battle.Data.Ship;
+
+namespace ship_battle.Data
 {
     public class PlayerBoard
     {
@@ -12,7 +14,7 @@
             NewMiss,
         }
         const int BOARD_SIZE = 10;
-        private SquareType[,] HitRecord;
+        public SquareType[,] HitRecord { get; }
         public List<Ship> Ships { get; private set; }
         public PlayerBoard(int player)
         {
@@ -26,6 +28,14 @@
                 }
             }
             Ships = new List<Ship>();
+        }
+        public static string GetSquareTypeName(SquareType square)
+        {
+            if (square == SquareType.Unknown) { return "Unknown"; }
+            if (square == SquareType.Hit) { return "Hit"; }
+            if (square == SquareType.Miss) { return "Miss"; }
+            if (square == SquareType.NewMiss) { return "NewMiss"; }
+            return "NewHit";
         }
         public bool AddShip(Ship ship)
         {

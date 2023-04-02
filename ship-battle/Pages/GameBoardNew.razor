@@ -1,9 +1,11 @@
 ﻿@using ship_battle.Data
-
+<h3>ShipBattle
+</h3>
 
 <dif class="game">
 
     <div class="game-board-grid">
+
         @for (int col = 0; col < 10 ; col++)
         {
             @for (int row = 0; row < 10; row++)
@@ -18,11 +20,28 @@
 
         }
         @foreach (Ship ship in playerBoard1.Ships)
-        {
+        {   if (!ship.IsSunk())
+            {
+                continue;
+            }
             <div class="ship @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
             --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
         }
 
+        @for (int col = 0; col < 10; col++)
+        {
+            @for (int row = 0; row < 10; row++)
+            {
+                string square_name = PlayerBoard.GetSquareTypeName(playerBoard1.HitRecord[col, row]).ToLower();
+                var temp_col = col + 1;
+                var temp_row = row + 1;
+                if (square_name == "hit" || square_name == "miss")
+                {
+                    <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                }
+            }
+
+        }
 
     </div>
 </dif>
@@ -33,11 +52,6 @@
     PlayerBoard playerBoard1 = new PlayerBoard(1);
     protected override void OnInitialized()
     {
-        /*playerBoard1.AddShip(new Ship(Ship.ShipType.Carrier, 0, 0, false));
-        playerBoard1.AddShip(new Ship(Ship.ShipType.Battleship, 2, 2, true));
-        playerBoard1.AddShip(new Ship(Ship.ShipType.Cruiser, 4, 4, false));
-        playerBoard1.AddShip(new Ship(Ship.ShipType.Submarine, 6, 6, false));
-        playerBoard1.AddShip(new Ship(Ship.ShipType.Destroyer, 8, 8, true));*/
 
         Random autoRand = new Random();
         int autoRandInt = autoRand.Next();
@@ -45,11 +59,12 @@
         playerBoard1.Populate(autoRandInt);
 
     }
-    
+
     public void SquareClick(MouseEventArgs eventArgs, int col, int row)
     {
         Console.WriteLine("CLICK: " + "col: " + col + " row: " + row);
         PlayerBoard.SquareType tempSquareType = playerBoard1.Hit(col, row);
+
         if (tempSquareType == PlayerBoard.SquareType.NewHit)
         {
             Console.WriteLine("HIT");
