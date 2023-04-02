@@ -51,19 +51,19 @@ namespace ship_battle.Data
             return true;
 
         }
-        public void Populate(int seed)
+        public void Populate(int seed1, int seed2)
         {
-            int[] seedArr = RandArr.GetArrSeed(seed, 10);
-            int seedPos = 0;
+            int[] seedArr = RandArr.GetArrSeed(seed1, seed2, 20);
+            int seedPos = 2;
             foreach (Ship.ShipType ship_type in Enum.GetValues(typeof(Ship.ShipType)))
             {
-                int fall_back = 0;
                 while (true) {
                     
-                    if (AddShip(new Ship(ship_type, Math.Abs(seedArr[seedPos]-fall_back), 
-                        Math.Abs(seedArr[seedPos+1]-fall_back), Math.Abs(seedArr[seedPos + 0] - fall_back) > 4))) { break; }
-                    seedPos++;
-                    if (seedPos > 8) { seedPos = 0; fall_back += 3; }
+                    if (AddShip(new Ship(ship_type, Math.Abs(seedArr[seedPos%20]), 
+                        Math.Abs(seedArr[(seedPos+1)%20]), Math.Abs(seedArr[(seedPos+2)%20]) > 4))) { break; }
+                    seedPos += 2;
+                    if (seedPos > 20) { seedPos = 1; }
+
                 }
                 
                 

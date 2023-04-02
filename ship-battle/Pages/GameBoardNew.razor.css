@@ -3,38 +3,47 @@
     --origin-row: 0;
     --end-col: 0;
     --end-row: 0;
+
 }
 
-h3 {
-    color: #41A317;
+h1 {
+    text-shadow: 10px;
+    position: relative;
     text-align: center;
+    color: #41A317;
+    font-family: Tahoma, Geneva, sans-serif;
+    padding-top: 6px;
+    font-size: 19px;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
 }
-
-.game {
-    padding-top: 10px;
-    margin: auto;
-    width: fit-content;
-    height: fit-content;
-}
-
 .header {
     margin: auto;
 }
-
+.game {
+    margin: auto;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+.game-board-status-panel {
+    width: 20vw;
+    background-color: transparent;
+    border: 2px solid black;
+}
 .game-board-grid {
     display: grid;
     min-width: 400px;
-    min-height: 400px;
-    position: relative;
+    aspect-ratio: 1/1;
     width: fit-content;
     height: fit-content;
-    margin: auto;
     border: 1px solid #41A317;
 }
 
 
 .game-board-square:hover {
-    box-shadow: inset 0 0 0 2px white;
+    box-shadow: inset 0 0 0 2px lightgrey;
 }
 .game-board-square.hit:hover {
     box-shadow: none;
@@ -47,20 +56,45 @@ h3 {
 .game-board-square {
     grid-area: var(--origin-row)/var(--origin-col);
     min-height: 40px;
-    height: 8vmin;
+    height: 7vmin;
     aspect-ratio: 1/1;
     border: solid 1px #41A317;
     background-color: black;
 }
     .game-board-square.hit {
-        margin:auto;
+        background-color: transparent;
+        border: 4px solid orange;
+        margin: auto;
+        height: 2vmin;
+        min-height: 10px;
+        -webkit-border-radius: 50%;
+        animation: pulsate 1s ease-out;
+        -webkit-animation-iteration-count: infinite;
+        opacity: 0.0
+    }
+    .game-board-square.hit-circle {
         border-radius: 50%;
+        margin: auto;
+        height: 2vmin;
+        min-height: 10px;
         border: none;
-        height: 4vmin;
-        opacity: 100%;
-        grid-area: var(--origin-row)/var(--origin-col);
         background-color: darkorange;
     }
+@-webkit-keyframes pulsate {
+    0% {
+        -webkit-transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+
+    50% {
+        opacity: 1.0;
+    }
+
+    100% {
+        -webkit-transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}
     .game-board-square.miss {
         opacity: 50%;
         grid-area: var(--origin-row)/var(--origin-col);

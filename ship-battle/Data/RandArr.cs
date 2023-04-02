@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Intrinsics.X86;
 
 // GetDigits and NumberOfDigits from:
 // https://stackoverflow.com/questions/829174/is-there-an-easy-way-to-turn-an-int-into-an-array-of-ints-of-each-digit
@@ -7,13 +8,19 @@ namespace ship_battle.Data
 {
     public static class RandArr
     {
-        public static int[] GetArrSeed(int seed, int items)
+        public static int[] GetArrSeed(int seed1, int seed2, int items)
         {
             int[] returnArr = new int[items];
-            int[] digitArr = GetDigits(seed);
-            for (int i = 0; i < digitArr.Length; i++)
+            int[] digitArr1 = GetDigits(seed1);
+            int[] digitArr2 = GetDigits(seed2);
+
+            for (int i = 0; i < digitArr1.Length; i++)
             {
-                returnArr[i] = digitArr[i];
+                returnArr[i] = digitArr1[i];
+            }
+            for (int i = 0; i < digitArr2.Length; i++)
+            {
+                returnArr[i + digitArr1.Length] = digitArr2[i];
             }
             return returnArr;
         }
@@ -21,10 +28,15 @@ namespace ship_battle.Data
         {
             Random autoRand = new();
             int[] returnArr = new int[items];
-            int[] digitArr = GetDigits(autoRand.Next());
-            for (int i = 0; i < digitArr.Length; i++)
+            int[] digitArr1 = GetDigits(autoRand.Next());
+            int[] digitArr2 = GetDigits(autoRand.Next());
+            for (int i = 0; i < digitArr1.Length; i++)
             {
-                returnArr[i] = digitArr[i];
+                returnArr[i] = digitArr1[i];
+            }
+            for (int i = digitArr1.Length; i < digitArr1.Length + digitArr2.Length; i++)
+            {
+                returnArr[i] = digitArr2[i];
             }
             return returnArr;
         }

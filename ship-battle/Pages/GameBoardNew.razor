@@ -1,9 +1,9 @@
 ﻿@using ship_battle.Data
-<h3>ShipBattle
-</h3>
+<h1>ShipBattle
+</h1>
 
 <dif class="game">
-
+    <div class="game-board-status-panel"></div>
     <div class="game-board-grid">
 
         @for (int col = 0; col < 10 ; col++)
@@ -20,7 +20,7 @@
 
         }
         @foreach (Ship ship in playerBoard1.Ships)
-        {   if (!ship.IsSunk())
+        {   if (ship.IsSunk())
             {
                 continue;
             }
@@ -39,6 +39,10 @@
                 {
                     <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
                 }
+                if (square_name == "hit")
+                {
+                    <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                }
             }
 
         }
@@ -54,9 +58,11 @@
     {
 
         Random autoRand = new Random();
-        int autoRandInt = autoRand.Next();
-        Console.WriteLine(autoRandInt);
-        playerBoard1.Populate(autoRandInt);
+        int autoRandInt1 = autoRand.Next();
+        int autoRandInt2 = autoRand.Next();
+        Console.WriteLine(autoRandInt1);
+        Console.WriteLine(autoRandInt2);
+        playerBoard1.Populate(autoRandInt1, autoRandInt2);
 
     }
 
