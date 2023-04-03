@@ -3,7 +3,6 @@ html, body {
 }
 body {
     background-color: #222222;
-    background: rgb(15,15,15);
     background: linear-gradient(0deg, rgba(15,15,15,1) 0%, rgba(34,34,34,1) 100%);
     background-attachment: fixed;
 }

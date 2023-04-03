@@ -3,7 +3,24 @@
 </h1>
 
 <dif class="game">
-    <div class="game-board-status-panel"></div>
+    <div class="game-board-status-panel">
+        <h2>
+            Friendly fleet
+        </h2>
+        @foreach (Ship ship in playerBoard1.Ships)
+        {
+            string status = "sunk";
+            if (!ship.IsSunk())
+            {
+                status = "";
+            }
+            
+            <div class="status-ship @ship.Name() @status">
+                <h3 id="@status"> @ship.Name()</h3>
+            </div>
+        }
+    </div>
+    <div class="game-board-spacer"</div>
     <div class="game-board-grid">
 
         @for (int col = 0; col < 10 ; col++)
@@ -14,13 +31,13 @@
                 var temp_row = row+1;
 
                 <div class="game-board-square" style="--origin-col: @temp_col; --origin-row: @temp_row"
-                @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1))">
+                @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1, playerBoard1.Player))">
                 </div>
             }
 
         }
         @foreach (Ship ship in playerBoard1.Ships)
-        {   if (ship.IsSunk())
+        {   if (!ship.IsSunk())
             {
                 continue;
             }
@@ -48,12 +65,59 @@
         }
 
     </div>
+    <div class="game-board-spacer"></div>
+    <div class="game-board-grid">
+
+        @for (int col = 0; col < 10; col++)
+        {
+            @for (int row = 0; row < 10; row++)
+            {
+                var temp_col = col + 1;
+                var temp_row = row + 1;
+
+                <div class="game-board-square" style="--origin-col: @temp_col; --origin-row: @temp_row"
+             @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1, playerBoard2.Player))">
+                </div>
+            }
+
+        }
+        @foreach (Ship ship in playerBoard2.Ships)
+        {
+            if (!ship.IsSunk())
+            {
+                continue;
+            }
+            <div class="ship @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
+            --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
+        }
+
+        @for (int col = 0; col < 10; col++)
+        {
+            @for (int row = 0; row < 10; row++)
+            {
+                string square_name = PlayerBoard.GetSquareTypeName(playerBoard2.HitRecord[col, row]).ToLower();
+                var temp_col = col + 1;
+                var temp_row = row + 1;
+                if (square_name == "hit" || square_name == "miss")
+                {
+                    <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                }
+                if (square_name == "hit")
+                {
+                    <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                }
+            }
+
+        }
+
+    </div>
 </dif>
 
 
 @code {
 
     PlayerBoard playerBoard1 = new PlayerBoard(1);
+    PlayerBoard playerBoard2 = new PlayerBoard(2);
     protected override void OnInitialized()
     {
 
@@ -64,27 +128,25 @@
         Console.WriteLine(autoRandInt2);
         playerBoard1.Populate(autoRandInt1, autoRandInt2);
 
+        autoRandInt1 = autoRand.Next();
+        autoRandInt2 = autoRand.Next();
+        Console.WriteLine(autoRandInt1);
+        Console.WriteLine(autoRandInt2);
+        playerBoard2.Populate(autoRandInt1, autoRandInt2);
+
     }
 
-    public void SquareClick(MouseEventArgs eventArgs, int col, int row)
+
+    public void SquareClick(MouseEventArgs eventArgs, int col, int row, int player)
     {
         Console.WriteLine("CLICK: " + "col: " + col + " row: " + row);
-        PlayerBoard.SquareType tempSquareType = playerBoard1.Hit(col, row);
-
-        if (tempSquareType == PlayerBoard.SquareType.NewHit)
+        if (player == 1)
         {
-            Console.WriteLine("HIT");
-            Ship tempShip = playerBoard1.GetShip(col, row);
-            Console.WriteLine(tempShip.Name() + (tempShip.IsSunk() ? " SUNK" : ""));
+            PlayerBoard.SquareType tempSquareType = playerBoard1.Hit(col, row);
         }
-        if (tempSquareType == PlayerBoard.SquareType.NewMiss)
+        else
         {
-            Console.WriteLine("MISS");
-        }
-        if (tempSquareType != PlayerBoard.SquareType.NewMiss
-            && tempSquareType != PlayerBoard.SquareType.NewHit)
-        {
-            Console.WriteLine("You can not hit the same place twice!");
+            PlayerBoard.SquareType tempSquareType = playerBoard2.Hit(col, row);
         }
 
     }
