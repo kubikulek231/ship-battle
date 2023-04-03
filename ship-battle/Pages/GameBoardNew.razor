@@ -1,115 +1,119 @@
 ﻿@using ship_battle.Data
-<h1>ShipBattle
-</h1>
+
 
 <dif class="game">
-    <div class="game-board-status-panel">
-        <h2>
-            Friendly fleet
-        </h2>
-        @foreach (Ship ship in playerBoard1.Ships)
-        {
-            string status = "sunk";
-            if (!ship.IsSunk())
+    <h1>
+        ShipBattle
+    </h1>
+    <div class="game-layout">
+        <div class="game-board-status-panel">
+            <h2>
+                Friendly fleet
+            </h2>
+            @foreach (Ship ship in playerBoard1.Ships)
             {
-                status = "";
-            }
+                string status = "sunk";
+                if (!ship.IsSunk())
+                {
+                    status = "";
+                }
             
-            <div class="status-ship @ship.Name() @status">
-                <h3 id="@status"> @ship.Name()</h3>
-            </div>
-        }
-    </div>
-    <div class="game-board-spacer"</div>
-    <div class="game-board-grid">
-
-        @for (int col = 0; col < 10 ; col++)
-        {
-            @for (int row = 0; row < 10; row++)
-            {
-                var temp_col = col+1;
-                var temp_row = row+1;
-
-                <div class="game-board-square" style="--origin-col: @temp_col; --origin-row: @temp_row"
-                @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1, playerBoard1.Player))">
+                <div class="status-ship @ship.Name() @status">
+                    <h3 id="@status"> @ship.Name()</h3>
                 </div>
             }
+        </div>
+        <div class="game-board-spacer"></div>
+        <div class="game-board-grid">
 
-        }
-        @foreach (Ship ship in playerBoard1.Ships)
-        {   if (!ship.IsSunk())
+            @for (int col = 0; col < 10 ; col++)
             {
-                continue;
-            }
-            <div class="ship @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
-            --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
-        }
-
-        @for (int col = 0; col < 10; col++)
-        {
-            @for (int row = 0; row < 10; row++)
-            {
-                string square_name = PlayerBoard.GetSquareTypeName(playerBoard1.HitRecord[col, row]).ToLower();
-                var temp_col = col + 1;
-                var temp_row = row + 1;
-                if (square_name == "hit" || square_name == "miss")
+                @for (int row = 0; row < 10; row++)
                 {
-                    <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    var temp_col = col+1;
+                    var temp_row = row+1;
+
+                    <div class="game-board-square" style="--origin-col: @temp_col; --origin-row: @temp_row"
+                    @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1, playerBoard1.Player))">
+                    </div>
                 }
-                if (square_name == "hit")
+
+            }
+            @foreach (Ship ship in playerBoard1.Ships)
+            {   if (!ship.IsSunk())
                 {
-                    <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    continue;
                 }
+                <div class="ship @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
+                --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
             }
 
-        }
-
-    </div>
-    <div class="game-board-spacer"></div>
-    <div class="game-board-grid">
-
-        @for (int col = 0; col < 10; col++)
-        {
-            @for (int row = 0; row < 10; row++)
+            @for (int col = 0; col < 10; col++)
             {
-                var temp_col = col + 1;
-                var temp_row = row + 1;
-
-                <div class="game-board-square" style="--origin-col: @temp_col; --origin-row: @temp_row"
-             @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1, playerBoard2.Player))">
-                </div>
-            }
-
-        }
-        @foreach (Ship ship in playerBoard2.Ships)
-        {
-            if (!ship.IsSunk())
-            {
-                continue;
-            }
-            <div class="ship @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
-            --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
-        }
-
-        @for (int col = 0; col < 10; col++)
-        {
-            @for (int row = 0; row < 10; row++)
-            {
-                string square_name = PlayerBoard.GetSquareTypeName(playerBoard2.HitRecord[col, row]).ToLower();
-                var temp_col = col + 1;
-                var temp_row = row + 1;
-                if (square_name == "hit" || square_name == "miss")
+                @for (int row = 0; row < 10; row++)
                 {
-                    <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    string square_name = PlayerBoard.GetSquareTypeName(playerBoard1.HitRecord[col, row]).ToLower();
+                    var temp_col = col + 1;
+                    var temp_row = row + 1;
+                    if (square_name == "hit" || square_name == "miss")
+                    {
+                        <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
+                    if (square_name == "hit")
+                    {
+                        <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
                 }
-                if (square_name == "hit")
-                {
-                    <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
-                }
+
             }
 
-        }
+        </div>
+        <div class="game-board-spacer"></div>
+        <div class="game-board-grid">
 
+            @for (int col = 0; col < 10; col++)
+            {
+                @for (int row = 0; row < 10; row++)
+                {
+                    var temp_col = col + 1;
+                    var temp_row = row + 1;
+
+                    <div class="game-board-square" style="--origin-col: @temp_col; --origin-row: @temp_row"
+                 @onclick="@(e => SquareClick(e, temp_col-1, temp_row-1, playerBoard2.Player))">
+                    </div>
+                }
+
+            }
+            @foreach (Ship ship in playerBoard2.Ships)
+            {
+                if (!ship.IsSunk())
+                {
+                    continue;
+                }
+                <div class="ship @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
+                --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
+            }
+
+            @for (int col = 0; col < 10; col++)
+            {
+                @for (int row = 0; row < 10; row++)
+                {
+                    string square_name = PlayerBoard.GetSquareTypeName(playerBoard2.HitRecord[col, row]).ToLower();
+                    var temp_col = col + 1;
+                    var temp_row = row + 1;
+                    if (square_name == "hit" || square_name == "miss")
+                    {
+                        <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
+                    if (square_name == "hit")
+                    {
+                        <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
+                }
+
+            }
+
+        </div>
     </div>
 </dif>
 

@@ -1,6 +1,4 @@
-﻿using static ship_battle.Data.Ship;
-
-namespace ship_battle.Data
+﻿namespace ship_battle.Data
 {
     public class PlayerBoard
     {
@@ -57,16 +55,17 @@ namespace ship_battle.Data
             int seedPos = 2;
             foreach (Ship.ShipType ship_type in Enum.GetValues(typeof(Ship.ShipType)))
             {
-                while (true) {
-                    
-                    if (AddShip(new Ship(ship_type, Math.Abs(seedArr[seedPos%20]), 
-                        Math.Abs(seedArr[(seedPos+1)%20]), Math.Abs(seedArr[(seedPos+2)%20]) > 4))) { break; }
+                while (true)
+                {
+
+                    if (AddShip(new Ship(ship_type, Math.Abs(seedArr[seedPos % 20]),
+                        Math.Abs(seedArr[(seedPos + 1) % 20]), Math.Abs(seedArr[(seedPos + 2) % 20]) > 4))) { break; }
                     seedPos += 2;
                     if (seedPos > 20) { seedPos = 1; }
 
                 }
-                
-                
+
+
             }
         }
         public SquareType Hit(int x, int y)

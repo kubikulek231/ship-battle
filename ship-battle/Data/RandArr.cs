@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.Intrinsics.X86;
-
-// GetDigits and NumberOfDigits from:
+﻿// GetDigits and NumberOfDigits from:
 // https://stackoverflow.com/questions/829174/is-there-an-easy-way-to-turn-an-int-into-an-array-of-ints-of-each-digit
 
 namespace ship_battle.Data

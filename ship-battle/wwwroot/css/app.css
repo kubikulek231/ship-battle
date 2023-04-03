@@ -10,9 +10,9 @@ body {
 #app {
     position: relative;
     margin: auto;
-    margin-top: 10vmin;
-    width: fit-content;
-    height: fit-content;
+    width: 95vw;
+    height: 95vh;
+    
 }
 
 .loading-spinner {
@@ -40,8 +40,9 @@ body {
 .loading {
     width: fit-content;
     height: fit-content;
-    position: fixed;
-    top: 50vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
 .loading-text {
