@@ -1,0 +1,174 @@
+﻿@using ship_battle.Data
+
+<dif class="game">
+    <h1>
+        ShipBattle
+    </h1>
+    <div class="game-layout">
+        <div class="game-board-status-panel">
+            @if (game.GameState == Game.GameStateType.Setup)
+            {
+                <h2 id="h2-setup">
+                    Fleet setup
+                </h2>
+            }
+            @if (game.FriendlyBoard.Ships.Count != 0)
+            {
+                <h2 id="h2-friendly">
+                Friendly fleet
+                </h2>
+            }
+                @foreach (Ship ship in game.FriendlyBoard.Ships)
+                {
+                    string status = "sunk";
+                    if (!ship.IsSunk())
+                    {
+                        status = "";
+                    }
+
+                    <div class="status-ship friendly @ship.Name() @status">
+                        <h3 id="@status"> @ship.Name()</h3>
+                    </div>
+                }
+            
+            @if (game.GameState == Game.GameStateType.Ready)
+            {
+                <h2 id="h2-enemy">
+                Enemy fleet
+                </h2>
+                @foreach (Ship ship in game.EnemyBoard.Ships)
+                {
+                    string status = "sunk";
+                    if (!ship.IsSunk())
+                    {
+                        status = "";
+                    }
+
+                    <div class="status-ship enemy @ship.Name() @status">
+                        <h3 id="@status"> @ship.Name()</h3>
+                    </div>
+                }  
+            }
+                
+        @if (game.IsEveryFriendlyShipAdded() != Ship.ShipType.None)
+        {
+                <h2 id="h2-setup">
+                    Next ship
+                </h2>
+                Ship.ShipType nextShip = game.IsEveryFriendlyShipAdded();
+                string nextShipName = Ship.Name(nextShip);
+                <div class="status-ship add @nextShipName">
+                        <h3 id="add-ship"> @nextShipName</h3>
+                    </div>
+        }
+        </div>
+        <div class="game-board-spacer"></div>
+        <div class="game-board-grid friendly">
+            
+            @for (int col = 0; col < 10; col++)
+            {
+                @for (int row = 0; row < 10; row++)
+                {
+                    var temp_col = col + 1;
+                    var temp_row = row + 1;
+                    string hover = "";
+                    if (game.IsBoardSetupHover(temp_col - 1, temp_row - 1))
+                    {
+                        hover = "hover";
+                    }
+                    <div class="game-board-square friendly @hover" style="--origin-col: @temp_col; --origin-row: @temp_row"
+                 @onclick="@(e => game.BoardClick(e, temp_col-1, temp_row-1, game.FriendlyBoard))" @onmouseover="@(e => game.BoardSetupHover(e, temp_col-1, temp_row-1))" @onmouseout="@(e => game.BoardSetupReset())">
+                    </div>
+                }
+
+            }
+            
+            @foreach (Ship ship in game.FriendlyBoard.Ships)
+            {
+                <div class="ship friendly @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
+                --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
+            }
+
+            @for (int col = 0; col < 10; col++)
+            {
+                @for (int row = 0; row < 10; row++)
+                {
+                    string square_name = PlayerBoard.GetSquareTypeName(game.FriendlyBoard.HitRecord[col, row]).ToLower();
+                    var temp_col = col + 1;
+                    var temp_row = row + 1;
+                    if (square_name == "miss")
+                    {
+                        <div class="game-board-square friendly @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
+                    if (square_name == "hit")
+                    {
+                        <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                        <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
+                }
+
+            }
+
+        </div>
+        <div class="game-board-spacer"></div>
+        <div class="game-board-grid">
+
+            @for (int col = 0; col < 10; col++)
+            {
+                @for (int row = 0; row < 10; row++)
+                {
+                    var temp_col = col + 1;
+                    var temp_row = row + 1;
+
+                    <div class="game-board-square enemy" style="--origin-col: @temp_col; --origin-row: @temp_row"
+                 @onclick="@(e => game.BoardClick(e, temp_col-1, temp_row-1, game.EnemyBoard))">
+                    </div>
+                }
+
+            }
+            @foreach (Ship ship in game.EnemyBoard.Ships)
+            {
+                if (!ship.IsSunk())
+                {
+                    continue;
+                }
+                <div class="ship enemy @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
+                --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
+            }
+
+            @for (int col = 0; col < 10; col++)
+            {
+                @for (int row = 0; row < 10; row++)
+                {
+                    string square_name = PlayerBoard.GetSquareTypeName(game.EnemyBoard.HitRecord[col, row]).ToLower();
+                    var temp_col = col + 1;
+                    var temp_row = row + 1;
+                    if (square_name == "miss")
+                    {
+                        <div class="game-board-square enemy @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
+                    if (square_name == "hit")
+                    {
+                        <div class="game-board-square @square_name" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                        <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
+                    }
+                }
+
+            }
+
+        </div>
+        
+    </div>
+    <div class="game-bar">
+        <button class="button start" @onclick="@(e => game.StartGame())">START</button>
+        <button class="button rotate" @onclick="@(e => game.SetupRotate = !game.SetupRotate)">ROTATE</button>
+        <button class="button custom-reset" @onclick="@(e => game.RemoveLastFriendlyShip())">REMOVE LAST</button>
+        <button class="button custom-reset" @onclick="@(e => game.ResetSetup())">SETUP RST</button>
+        <button class="button random" @onclick="@(e => game.RandomSetup())">RANDOM</button>
+    </div>
+</dif>
+
+@code {
+
+    Game game = new Game(Game.DifficultyType.Easy);
+}

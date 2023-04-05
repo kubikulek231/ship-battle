@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sZP7YPoY52uqb8jEOpaQjP4xEbJNM3GmTd1aGx1Dtdm5w4oZG+VfhtDLsP7HzGhXzWYeIpEy5iRhXTMI3PmApg==",
+  "dgSpecHash": "24YjsybUwcaMiaFs7xgQ4xYN5vU/Vz9QO2nfin7MGnJmelHpE9Qf2QZqsP7aullSkCTHAocbqgYssL+snsp+uA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\ship-battle\\ship-battle\\ship-battle.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\git\\ship-battle\\ship-battle\\ship-battle.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.4\\microsoft.aspnetcore.authorization.7.0.4.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.4\\microsoft.aspnetcore.components.7.0.4.nupkg.sha512",

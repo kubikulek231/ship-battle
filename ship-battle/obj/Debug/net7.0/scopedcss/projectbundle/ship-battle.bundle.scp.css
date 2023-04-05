@@ -2,15 +2,15 @@
 
 main[b-t679ll8pal] {
 }
-/* /Pages/GameBoardNew.razor.rz.scp.css */
-:root[b-taxovbgbo8] {
+/* /Pages/GamePage.razor.rz.scp.css */
+:root[b-j8u5poay1t] {
     --origin-col: 0;
     --origin-row: 0;
     --end-col: 0;
     --end-row: 0;
-
 }
-h1[b-taxovbgbo8] {
+
+h1[b-j8u5poay1t] {
     text-shadow: 10px;
     position: relative;
     text-align: center;
@@ -21,55 +21,76 @@ h1[b-taxovbgbo8] {
     font-variant: normal;
     text-transform: none;
 }
-h2[b-taxovbgbo8] {
+
+h2[b-j8u5poay1t] {
     position: relative;
     text-align: center;
     color: #41A317;
     font-family: Tahoma, Geneva, sans-serif;
     padding-top: 6px;
-    font-size: 1.5vmin;
+    font-size: 2vmin;
     font-style: normal;
     font-variant: normal;
     text-transform: none;
 }
-h3[b-taxovbgbo8] {
+
+h3[b-j8u5poay1t] {
     position: relative;
     padding: 0.5vmin;
     text-align: center;
     margin: auto;
     color: white;
     padding-top: 6px;
-    font-size: 1vmin;
+    font-size: 1.5vmin;
     font-style: normal;
     font-variant: normal;
     text-transform: none;
 }
-#sunk[b-taxovbgbo8] {
+#h2-friendly[b-j8u5poay1t] {
+    color: #41A317;
+}
+#h2-enemy[b-j8u5poay1t] {
+    color: darkred;
+}
+#h2-setup[b-j8u5poay1t] {
+    color: dodgerblue;
+}
+#sunk[b-j8u5poay1t] {
     color: dimgray;
 }
 
-.header[b-taxovbgbo8] {
+.header[b-j8u5poay1t] {
     margin: auto;
 }
-.game[b-taxovbgbo8] {
+
+.game[b-j8u5poay1t] {
     position: relative;
     width: 95vw;
     height: fit-content;
+    width: fit-content;
     min-width: 900px;
     min-height: 300px;
     background-color: transparent;
 }
-.game-layout[b-taxovbgbo8] {
+
+.game-layout[b-j8u5poay1t] {
     display: flex;
+    width: 100%;
+    height: 100%;
+
 }
-.game-board-status-panel[b-taxovbgbo8] {
+
+.game-board-status-panel[b-j8u5poay1t] {
     min-width: 100px;
-    width: 20%;
+    width: 30%;
     min-height: 10%;
     background-color: transparent;
     border: 2px solid black;
+    background: rgb(0,0,0);
+    background: linear-gradient(22deg, rgba(0,0,0,0.7679446778711485) 0%, rgba(57,57,57,0) 100%);
 }
-.status-ship[b-taxovbgbo8] {
+
+.status-ship[b-j8u5poay1t] {
     position: relative;
     margin: auto;
     margin-top: 5px;
@@ -77,63 +98,94 @@ h3[b-taxovbgbo8] {
     height: fit-content;
     background-color: #41A317;
 }
-.status-ship.sunk[b-taxovbgbo8] {
-    background-color: #333333;
-    color: dimgray;
-}
-.game-board-grid[b-taxovbgbo8] {
+    .status-ship.friendly[b-j8u5poay1t] {
+        background-color: #41A317;
+    }
+    .status-ship.enemy[b-j8u5poay1t] {
+        background-color: darkred;
+    }
+    .status-ship.sunk[b-j8u5poay1t] {
+        background-color: #333333;
+        color: dimgray;
+    }
+    .status-ship.add[b-j8u5poay1t] {
+        background-color: dodgerblue;
+    }
+.game-board-grid[b-j8u5poay1t] {
     position: relative;
     display: grid;
     aspect-ratio: 1/1;
     width: 100%;
+    height: 100%;
     margin: auto;
     border: 1px solid black;
     background: rgb(0,0,0);
     background: linear-gradient(22deg, rgba(0,0,0,0.7679446778711485) 0%, rgba(57,57,57,0) 100%);
 }
-.game-board-spacer[b-taxovbgbo8] {
+
+.game-board-spacer[b-j8u5poay1t] {
     min-width: 10px;
 }
 
-.game-board-square:hover[b-taxovbgbo8] {
+.game-board-square.enemy:hover[b-j8u5poay1t] {
     box-shadow: inset 0 0 0 2px lightgrey;
 }
-.game-board-square.hit:hover[b-taxovbgbo8] {
-    box-shadow: none;
-}
-.game-board-square.miss:hover[b-taxovbgbo8] {
+
+.game-board-square.hit:hover[b-j8u5poay1t] {
     box-shadow: none;
 }
 
+.game-board-square.miss:hover[b-j8u5poay1t] {
+    box-shadow: none;
+}
+.game-board-square.hover[b-j8u5poay1t] {
+    background-color: dimgrey;
+}
 
-.game-board-square[b-taxovbgbo8] {
+.game-board-square[b-j8u5poay1t] {
+    outline-offset: 0px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
     grid-area: var(--origin-row)/var(--origin-col);
     min-height: 30px;
     height: 100%;
     aspect-ratio: 1/1;
-    border: solid 1px #41A317;
     background-color: transparent;
     box-shadow: inset 9px 9px 300px -200px dimgrey;
 }
-    .game-board-square.hit[b-taxovbgbo8] {
+    .game-board-square.friendly[b-j8u5poay1t] {
+        outline: solid 1px #41A317;
+    }
+    .game-board-square.enemy[b-j8u5poay1t] {
+        outline: solid 1px darkred;
+    }
+
+    .game-board-square.hit[b-j8u5poay1t] {
+        width: 1.5vmin;
+        height: 1.5vmin;
         background-color: transparent;
         border: 4px solid orange;
         margin: auto;
-        height: 1vmin;
-        min-height: 10px;
+        min-height: 5px;
         -webkit-border-radius: 50%;
         animation: pulsate 1s ease-out;
         -webkit-animation-iteration-count: infinite;
         opacity: 0.0
     }
-    .game-board-square.hit-circle[b-taxovbgbo8] {
+
+    .game-board-square.hit-circle[b-j8u5poay1t] {
+        width: 1.5vmin;
+        height: 1.5vmin;
         border-radius: 50%;
         margin: auto;
-        height: 1vmin;
-        min-height: 10px;
+        min-height: 5px;
         border: none;
         background-color: darkorange;
+        left: 0;
+        right: 0;
     }
+
 @-webkit-keyframes pulsate {
     0% {
         -webkit-transform: scale(0.1, 0.1);
@@ -149,22 +201,57 @@ h3[b-taxovbgbo8] {
         opacity: 0.0;
     }
 }
-.game-board-square.miss[b-taxovbgbo8] {
-    margin: auto;
-    opacity: 50%;
-    grid-area: var(--origin-row)/var(--origin-col);
-    background-color: #41A317;
-}
 
+    .game-board-square.friendly.miss[b-j8u5poay1t] {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        opacity: 50%;
+        grid-area: var(--origin-row)/var(--origin-col);
+        background-color: #41A317;
+        outline: solid 1px #41A317;
+    }
+    .game-board-square.enemy.miss[b-j8u5poay1t] {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        opacity: 50%;
+        grid-area: var(--origin-row)/var(--origin-col);
+        background-color: darkred;
+        outline: solid 1px darkred;
+    }
 
-.ship[b-taxovbgbo8] {
-    height: 100%;
+    .ship[b-j8u5poay1t] {
+        height: 100%;
+        width: 100%;
+        pointer-events: none;
+        grid-row-start: var(--origin-row);
+        grid-column-start: var(--origin-col);
+        grid-row-end: var(--end-row);
+        grid-column-end: var(--end-col);
+        background-color: #333333;
+    }
+        .ship.friendly[b-j8u5poay1t] {
+            outline: solid 1px #41A317;
+        }
+        .ship.enemy[b-j8u5poay1t] {
+            outline: solid 1px darkred;
+        }
+.game-bar[b-j8u5poay1t] {
+    display: flex;
+    position: relative;
     width: 100%;
-    border: solid 1px #41A317;
-    pointer-events: none;
-    grid-row-start: var(--origin-row);
-    grid-column-start: var(--origin-col);
-    grid-row-end: var(--end-row);
-    grid-column-end: var(--end-col);
-    background-color: #333333;
+    margin: auto;
+    height: 10vmin;;
+    background-color: black;
+}
+.button[b-j8u5poay1t] {
+    position: relative;
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+    height: 5vmin;
+    aspect-ratio: 3/1;
+    justify-content: center;
+    align-items: center;
 }

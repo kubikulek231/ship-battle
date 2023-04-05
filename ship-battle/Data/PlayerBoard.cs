@@ -1,8 +1,8 @@
-﻿namespace ship_battle.Data
+﻿
+namespace ship_battle.Data
 {
     public class PlayerBoard
     {
-        public int Player { get; }
         public enum SquareType
         {
             Unknown,
@@ -10,11 +10,18 @@
             Miss,
             NewHit,
             NewMiss,
+          
         }
-        const int BOARD_SIZE = 10;
+        public enum PlayerType
+        {
+            Friendly,
+            Enemy,
+        }
+        public PlayerType Player { get; }
+        public const int BOARD_SIZE = 10;
         public SquareType[,] HitRecord { get; }
         public List<Ship> Ships { get; private set; }
-        public PlayerBoard(int player)
+        public PlayerBoard(PlayerType player)
         {
             Player = player;
             HitRecord = new SquareType[BOARD_SIZE, BOARD_SIZE];
@@ -26,6 +33,11 @@
                 }
             }
             Ships = new List<Ship>();
+        }
+        public static string GetPlayerType(PlayerType player)
+        {
+            if (player == PlayerType.Enemy) { return "Enemy"; }
+            return "Friendly";
         }
         public static string GetSquareTypeName(SquareType square)
         {
@@ -49,12 +61,21 @@
             return true;
 
         }
+        public bool IsAlreadyAdded(Ship.ShipType shipType)
+        {
+            foreach (Ship ship in Ships)
+            {
+                if (ship.Type == shipType) { return true; }
+            }
+            return false;
+        }
         public void Populate(int seed1, int seed2)
         {
             int[] seedArr = RandArr.GetArrSeed(seed1, seed2, 20);
             int seedPos = 2;
             foreach (Ship.ShipType ship_type in Enum.GetValues(typeof(Ship.ShipType)))
             {
+                if (ship_type == Ship.ShipType.None) continue;
                 while (true)
                 {
 
@@ -120,6 +141,21 @@
                 return false;
             }
             return true;
+        }
+        public void ClearBoard()
+        {
+            Ships.Clear();
+            for (int i = 0; i < BOARD_SIZE; i++)
+            {
+                for (int j = 0; j < BOARD_SIZE; j++)
+                {
+                    HitRecord[i, j] = SquareType.Unknown;
+                }
+            }
+        }
+        public bool RemoveShip(Ship ship)
+        {
+            return Ships.Remove(ship);
         }
     }
 }

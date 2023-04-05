@@ -4,14 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\GameBoardNew.razor.css" />
+    <None Remove="Pages\GamePage.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Pages\GameBoardNew.razor.css" />
+    <Content Include="Pages\GamePage.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

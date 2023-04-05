@@ -4,13 +4,14 @@
     {
         public enum ShipType
         {
+            None,
             Carrier,
             Battleship,
             Cruiser,
             Submarine,
             Destroyer,
         }
-        private ShipType Type { get; set; }
+        public ShipType Type { get; private set; }
         public int OriginCol { get; private set; }
         public int OriginRow { get; private set; }
         public int EndCol { get; private set; }
@@ -57,12 +58,28 @@
             if (Type == ShipType.Submarine) { return "Submarine"; }
             return "Destroyer";
         }
+        public static string Name(ShipType shipType)
+        {
+            if (shipType == ShipType.Carrier) { return "Carrier"; }
+            if (shipType == ShipType.Battleship) { return "Battleship"; }
+            if (shipType == ShipType.Cruiser) { return "Cruiser"; }
+            if (shipType == ShipType.Submarine) { return "Submarine"; }
+            return "Destroyer";
+        }
         public int Length()
         {
             if (Type == ShipType.Carrier) { return 5; }
             if (Type == ShipType.Battleship) { return 4; }
             if (Type == ShipType.Cruiser) { return 3; }
             if (Type == ShipType.Submarine) { return 3; }
+            return 2;
+        }
+        public static int Length(ShipType shipType)
+        {
+            if (shipType == ShipType.Carrier) { return 5; }
+            if (shipType == ShipType.Battleship) { return 4; }
+            if (shipType == ShipType.Cruiser) { return 3; }
+            if (shipType == ShipType.Submarine) { return 3; }
             return 2;
         }
         public bool IsHit(int col, int row)
