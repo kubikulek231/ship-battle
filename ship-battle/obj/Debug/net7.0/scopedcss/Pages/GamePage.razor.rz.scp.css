@@ -8,13 +8,21 @@
 h1[b-j8u5poay1t] {
     text-shadow: 10px;
     position: relative;
+    width: 100%;
     text-align: center;
     color: #41A317;
     font-family: Tahoma, Geneva, sans-serif;
-    font-size: 3vmin;
+    font-size: 32px;
     font-style: normal;
     font-variant: normal;
     text-transform: none;
+    user-select: none;
+}
+#lose[b-j8u5poay1t] {
+    color: #b90000;
+}
+#draw[b-j8u5poay1t] {
+    color: white;
 }
 
 h2[b-j8u5poay1t] {
@@ -22,76 +30,112 @@ h2[b-j8u5poay1t] {
     text-align: center;
     color: #41A317;
     font-family: Tahoma, Geneva, sans-serif;
-    padding-top: 6px;
-    font-size: 2vmin;
+    font-size: 18px;
     font-style: normal;
     font-variant: normal;
     text-transform: none;
+    user-select: none;
 }
 
 h3[b-j8u5poay1t] {
     position: relative;
-    padding: 0.5vmin;
     text-align: center;
     margin: auto;
     color: white;
-    padding-top: 6px;
-    font-size: 1.5vmin;
+    font-size: 16px;
     font-style: normal;
     font-variant: normal;
     text-transform: none;
+    user-select: none;
 }
+
 #h2-friendly[b-j8u5poay1t] {
+    margin-top: 10px;
     color: #41A317;
 }
 #h2-enemy[b-j8u5poay1t] {
-    color: darkred;
+    margin-top: 0;
+    color: #be0000;
 }
 #h2-setup[b-j8u5poay1t] {
+    margin-top: 10px;
     color: dodgerblue;
+    padding-top: 0.4vw;
+    padding-bottom: 0.4vw;
 }
+#h2-white[b-j8u5poay1t] {
+    color: white;
+    background-color: black;
+    margin: auto;
+    margin-top: 0;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    width: 100%;
+}
+
 #sunk[b-j8u5poay1t] {
     color: dimgray;
 }
 
 .header[b-j8u5poay1t] {
+    width: 100%;
     margin: auto;
 }
 
 .game[b-j8u5poay1t] {
     position: relative;
-    width: 95vw;
-    height: fit-content;
-    width: fit-content;
-    min-width: 900px;
-    min-height: 300px;
-    background-color: transparent;
+    width: 100%;
+    min-width: 1260px;
 }
 
 .game-layout[b-j8u5poay1t] {
     display: flex;
-    width: 100%;
-    height: 100%;
-
+    height: fit-content;
 }
 
 .game-board-status-panel[b-j8u5poay1t] {
-    min-width: 100px;
+    
+    min-width: 150px;
     width: 30%;
-    min-height: 10%;
+    max-width: 200px;
     background-color: transparent;
     border: 2px solid black;
-    background: rgb(0,0,0);
-    background: linear-gradient(22deg, rgba(0,0,0,0.7679446778711485) 0%, rgba(57,57,57,0) 100%);
+}
+
+.friendly-fleet[b-j8u5poay1t] {
+    margin-top: 15px;
+    height: fit-content;
+}
+
+.enemy-fleet[b-j8u5poay1t] {
+
+    margin-top: 15px;
+    margin-bottom: auto;
+    height: fit-content;
+    padding-bottom: 10px;
+}
+
+.button-panel[b-j8u5poay1t] {
+    margin-top: max(2vw, 5px);
+    height: fit-content;
+    width: 100%;
+}
+
+.setup-panel[b-j8u5poay1t] {
+    min-height: 80px;
+    padding-top: 0.4vw;
+    padding-bottom: 0.4vw;
 }
 
 .status-ship[b-j8u5poay1t] {
     position: relative;
     margin: auto;
-    margin-top: 5px;
+    margin-bottom: 5px;
     width: 80%;
-    height: fit-content;
     background-color: #41A317;
+    user-select: none;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
 }
     .status-ship.friendly[b-j8u5poay1t] {
         background-color: #41A317;
@@ -106,6 +150,7 @@ h3[b-j8u5poay1t] {
     .status-ship.add[b-j8u5poay1t] {
         background-color: dodgerblue;
     }
+
 .game-board-grid[b-j8u5poay1t] {
     position: relative;
     display: grid;
@@ -113,37 +158,32 @@ h3[b-j8u5poay1t] {
     width: 100%;
     height: 100%;
     margin: auto;
-    border: 1px solid black;
+    border: 2px solid black;
     background: rgb(0,0,0);
     background: linear-gradient(22deg, rgba(0,0,0,0.7679446778711485) 0%, rgba(57,57,57,0) 100%);
 }
-
 .game-board-spacer[b-j8u5poay1t] {
     min-width: 10px;
 }
-
 .game-board-square.enemy:hover[b-j8u5poay1t] {
     box-shadow: inset 0 0 0 2px lightgrey;
 }
-
 .game-board-square.hit:hover[b-j8u5poay1t] {
     box-shadow: none;
 }
-
 .game-board-square.miss:hover[b-j8u5poay1t] {
     box-shadow: none;
 }
 .game-board-square.hover[b-j8u5poay1t] {
     background-color: dimgrey;
 }
-
 .game-board-square[b-j8u5poay1t] {
     outline-offset: 0px;
     width: 100%;
     height: 100%;
     margin: auto;
     grid-area: var(--origin-row)/var(--origin-col);
-    min-height: 30px;
+    min-height: 45px;
     height: 100%;
     aspect-ratio: 1/1;
     background-color: transparent;
@@ -190,7 +230,7 @@ h3[b-j8u5poay1t] {
     50% {
         opacity: 1.0;
     }
-
+    
     100% {
         -webkit-transform: scale(1.2, 1.2);
         opacity: 0.0;
@@ -232,21 +272,85 @@ h3[b-j8u5poay1t] {
         .ship.enemy[b-j8u5poay1t] {
             outline: solid 1px darkred;
         }
-.game-bar[b-j8u5poay1t] {
-    display: flex;
-    position: relative;
+
+.game-over-window[b-j8u5poay1t] {
+    top: 0;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
     width: 100%;
-    margin: auto;
-    height: 10vmin;;
-    background-color: black;
-}
-.button[b-j8u5poay1t] {
-    position: relative;
-    display: block;
-    margin: auto;
-    padding-top: 10px;
-    height: 5vmin;
-    aspect-ratio: 3/1;
+    height: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
+}
+.game-over-box[b-j8u5poay1t] {
+    width: 500px;
+    height: 180px;
+    background-color: black;
+    background: linear-gradient(0deg, black 0%, rgba(34,34,34,1) 100%);
+    background-attachment: fixed;
+    border: solid 2px black;
+}
+.game-over[b-j8u5poay1t] {
+    margin: auto;
+    padding-top: 10px;
+}
+.play-again[b-j8u5poay1t] {
+    background-color: dodgerblue;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+    .play-again:hover[b-j8u5poay1t] {
+        transition: 0.3s;
+        background-color: #469eff;
+    }
+
+    .play-again:active[b-j8u5poay1t] {
+        transition: 0.1s;
+        transform: translateY(2px);
+    }
+
+.btn[b-j8u5poay1t] {
+    user-select: none;
+    background-color: dodgerblue;
+    margin-top: 5px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0.4vw;
+    padding-bottom: 0.4vw;
+}
+    .btn.setup[b-j8u5poay1t] {
+        background-color: grey;
+    }
+    .btn.setup:hover[b-j8u5poay1t] {
+        background-color: #279cff;
+    }
+    .btn.setup:active[b-j8u5poay1t] {
+        transition: unset;
+        transform: unset;
+    }
+    .btn:hover[b-j8u5poay1t] {
+        transition: 0.3s;
+        background-color: #469eff;
+    }
+    .btn:active[b-j8u5poay1t] {
+        transition: 0.1s;
+        transform: translateY(2px);
+    }
+
+@media screen and (max-width: 1400px) {
+    .status-ship[b-j8u5poay1t] {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    .btn[b-j8u5poay1t] {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
 }

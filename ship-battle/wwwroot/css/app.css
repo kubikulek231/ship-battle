@@ -10,16 +10,13 @@ body {
 #app {
     position: relative;
     margin: auto;
-    width: 95vw;
+    width: 97vw;
     height: 95vh;
-    
 }
 
 .loading-spinner {
     position: relative;
     margin: auto;
-    width: fit-content;
-    height: fit-content;
     border: 6px solid #555555;
     border-top: 6px solid #ffffff;
     border-radius: 50%;
@@ -38,14 +35,11 @@ body {
 }
 
 .loading {
+    position: relative;
     width: fit-content;
     height: fit-content;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
     margin: auto;
+    padding-top: 40vh;
 }
 
 .loading-text {

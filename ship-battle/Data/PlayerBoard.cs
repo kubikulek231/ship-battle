@@ -1,4 +1,6 @@
 ﻿
+using static ship_battle.Data.Ship;
+
 namespace ship_battle.Data
 {
     public class PlayerBoard
@@ -10,7 +12,6 @@ namespace ship_battle.Data
             Miss,
             NewHit,
             NewMiss,
-          
         }
         public enum PlayerType
         {
@@ -61,6 +62,14 @@ namespace ship_battle.Data
             return true;
 
         }
+        public bool IsEveryShipSunk()
+        {
+            foreach (Ship ship in Ships)
+            {
+                if (!ship.IsSunk()) { return false; }
+            }
+            return true;
+        }
         public bool IsAlreadyAdded(Ship.ShipType shipType)
         {
             foreach (Ship ship in Ships)
@@ -69,24 +78,19 @@ namespace ship_battle.Data
             }
             return false;
         }
-        public void Populate(int seed1, int seed2)
+        public void Populate(RandStringNum randString)
         {
-            int[] seedArr = RandArr.GetArrSeed(seed1, seed2, 20);
             int seedPos = 2;
             foreach (Ship.ShipType ship_type in Enum.GetValues(typeof(Ship.ShipType)))
             {
                 if (ship_type == Ship.ShipType.None) continue;
                 while (true)
                 {
-
-                    if (AddShip(new Ship(ship_type, Math.Abs(seedArr[seedPos % 20]),
-                        Math.Abs(seedArr[(seedPos + 1) % 20]), Math.Abs(seedArr[(seedPos + 2) % 20]) > 4))) { break; }
+                    if (AddShip(new Ship(ship_type, randString.GetIntByPos(seedPos % 20),
+                        randString.GetIntByPos((seedPos + 1) % 20), randString.GetIntByPos(seedPos + 2 % 20) > 4))) { break; }
                     seedPos += 2;
-                    if (seedPos > 20) { seedPos = 1; }
-
+                    if (seedPos == randString.RandomStringLength - 2) { seedPos = 1; }
                 }
-
-
             }
         }
         public SquareType Hit(int x, int y)

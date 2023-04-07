@@ -825,7 +825,6 @@ C:\Users\Administrator\source\repos\ship-battle\ship-battle\obj\Debug\net7.0\ref
 C:\Users\Administrator\source\repos\ship-battle\ship-battle\obj\Debug\net7.0\ship-battle.pdb
 C:\Users\Administrator\source\repos\ship-battle\ship-battle\obj\Debug\net7.0\ref\ship-battle.dll
 C:\Users\Administrator\source\repos\ship-battle\ship-battle\obj\Debug\net7.0\scopedcss\MainLayout.razor.rz.scp.css
-C:\Users\Administrator\source\repos\ship-battle\ship-battle\obj\Debug\net7.0\scopedcss\Pages\GameBoardNew.razor.rz.scp.css
 C:\Users\Administrator\git\ship-battle\ship-battle\obj\Debug\net7.0\ship-battle.csproj.AssemblyReference.cache
 C:\Users\Administrator\git\ship-battle\ship-battle\obj\Debug\net7.0\ship-battle.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Administrator\git\ship-battle\ship-battle\obj\Debug\net7.0\ship-battle.AssemblyInfoInputs.cache
@@ -1654,3 +1653,4 @@ C:\Users\Administrator\git\ship-battle\ship-battle\obj\Debug\net7.0\scopedcss\pr
 C:\Users\Administrator\git\ship-battle\ship-battle\obj\Debug\net7.0\ship-battle.csproj.CopyComplete
 C:\Users\Administrator\git\ship-battle\ship-battle\obj\Debug\net7.0\ref\ship-battle.dll
 C:\Users\Administrator\git\ship-battle\ship-battle\obj\Debug\net7.0\scopedcss\Pages\GamePage.razor.rz.scp.css
+C:\Users\Administrator\source\repos\ship-battle\ship-battle\obj\Debug\net7.0\scopedcss\Pages\GamePage.razor.rz.scp.css

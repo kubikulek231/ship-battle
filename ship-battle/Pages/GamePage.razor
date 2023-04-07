@@ -1,23 +1,63 @@
 ﻿@using ship_battle.Data
-
-<dif class="game">
-    <h1>
+    
+ <div class="game">
+     <div class="header">
+        <h1>
         ShipBattle
-    </h1>
+        </h1>
+    </div>
     <div class="game-layout">
         <div class="game-board-status-panel">
             @if (game.GameState == Game.GameStateType.Setup)
             {
-                <h2 id="h2-setup">
+                <h2 id="h2-white">
                     Fleet setup
                 </h2>
+                <div class="setup-panel">
+                @if (game.IsEveryFriendlyShipAdded() == Ship.ShipType.None)
+                {
+                    <h2 id="h2-setup">
+                        Ready!
+                    </h2>
+                }
+                @if (game.IsEveryFriendlyShipAdded() != Ship.ShipType.None)
+                {
+                    <h2 id="h2-setup">
+                        Next ship
+                    </h2>
+                    Ship.ShipType nextShip = game.IsEveryFriendlyShipAdded();
+                    string nextShipName = Ship.Name(nextShip);
+                    <div class="status-ship add @nextShipName">
+                        <h3 id="add-ship"> @nextShipName</h3>
+                    </div>
+                }
+                </div>
             }
-            @if (game.FriendlyBoard.Ships.Count != 0)
+            @if (game.GameState == Game.GameStateType.Setup)
             {
+                string state = "";
+                <div class="button-panel">
+                    @if (game.IsEveryFriendlyShipAdded() != Ship.ShipType.None)
+                    {
+                        state = "setup";
+                    }
+                    <div class="btn @state" @onclick="@(e => game.StartGame())"><h3 id="add-ship">Start</h3></div>
+                    <div class="btn" @onclick="@(e => game.SetupRotate = !game.SetupRotate)"><h3 id="add-ship">Rotate</h3></div>
+                    <div class="btn" @onclick="@(e => game.RemoveLastFriendlyShip())"><h3 id="add-ship">Remove</h3></div>
+                    <div class="btn" @onclick="@(e => game.ResetSetup())"><h3 id="add-ship">Reset</h3></div>
+                    <div class="btn" @onclick="@(e => game.RandomSetup())"><h3 id="add-ship">Random</h3></div>
+                </div>
+            }
+            @if (game.GameState == Game.GameStateType.Ready || game.GameState == Game.GameStateType.GameOver)
+            {
+                <h2 id="h2-white">
+                    Game
+                </h2>
+                <div class="friendly-fleet">
                 <h2 id="h2-friendly">
                 Friendly fleet
                 </h2>
-            }
+            
                 @foreach (Ship ship in game.FriendlyBoard.Ships)
                 {
                     string status = "sunk";
@@ -25,17 +65,16 @@
                     {
                         status = "";
                     }
-
                     <div class="status-ship friendly @ship.Name() @status">
                         <h3 id="@status"> @ship.Name()</h3>
                     </div>
                 }
-            
-            @if (game.GameState == Game.GameStateType.Ready)
-            {
+                </div>
+                <div class="enemy-fleet">
                 <h2 id="h2-enemy">
                 Enemy fleet
                 </h2>
+
                 @foreach (Ship ship in game.EnemyBoard.Ships)
                 {
                     string status = "sunk";
@@ -43,28 +82,15 @@
                     {
                         status = "";
                     }
-
                     <div class="status-ship enemy @ship.Name() @status">
                         <h3 id="@status"> @ship.Name()</h3>
                     </div>
-                }  
+                }
+                </div>
             }
-                
-        @if (game.IsEveryFriendlyShipAdded() != Ship.ShipType.None)
-        {
-                <h2 id="h2-setup">
-                    Next ship
-                </h2>
-                Ship.ShipType nextShip = game.IsEveryFriendlyShipAdded();
-                string nextShipName = Ship.Name(nextShip);
-                <div class="status-ship add @nextShipName">
-                        <h3 id="add-ship"> @nextShipName</h3>
-                    </div>
-        }
         </div>
         <div class="game-board-spacer"></div>
         <div class="game-board-grid friendly">
-            
             @for (int col = 0; col < 10; col++)
             {
                 @for (int row = 0; row < 10; row++)
@@ -77,18 +103,15 @@
                         hover = "hover";
                     }
                     <div class="game-board-square friendly @hover" style="--origin-col: @temp_col; --origin-row: @temp_row"
-                 @onclick="@(e => game.BoardClick(e, temp_col-1, temp_row-1, game.FriendlyBoard))" @onmouseover="@(e => game.BoardSetupHover(e, temp_col-1, temp_row-1))" @onmouseout="@(e => game.BoardSetupReset())">
+                  @onmouseover="@(e => game.BoardSetupHover(temp_col-1, temp_row-1))" @onmouseleave="@(e => game.BoardSetupReset())">
                     </div>
                 }
-
             }
-            
             @foreach (Ship ship in game.FriendlyBoard.Ships)
             {
                 <div class="ship friendly @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
                 --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
             }
-
             @for (int col = 0; col < 10; col++)
             {
                 @for (int row = 0; row < 10; row++)
@@ -106,9 +129,7 @@
                         <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
                     }
                 }
-
             }
-
         </div>
         <div class="game-board-spacer"></div>
         <div class="game-board-grid">
@@ -121,10 +142,9 @@
                     var temp_row = row + 1;
 
                     <div class="game-board-square enemy" style="--origin-col: @temp_col; --origin-row: @temp_row"
-                 @onclick="@(e => game.BoardClick(e, temp_col-1, temp_row-1, game.EnemyBoard))">
+                 @onclick="@(e => game.BoardClick(temp_col-1, temp_row-1, game.EnemyBoard))">
                     </div>
                 }
-
             }
             @foreach (Ship ship in game.EnemyBoard.Ships)
             {
@@ -135,7 +155,6 @@
                 <div class="ship enemy @ship.Name().ToLower()" style="--origin-col: @ship.OriginCol1Based;
                 --origin-row: @ship.OriginRow1Based; --end-col: @ship.EndCol1Based; --end-row: @ship.EndRow1Based"></div>
             }
-
             @for (int col = 0; col < 10; col++)
             {
                 @for (int row = 0; row < 10; row++)
@@ -153,22 +172,29 @@
                         <div class="game-board-square hit-circle" style="--origin-col: @temp_col; --origin-row: @temp_row"></div>
                     }
                 }
-
             }
-
         </div>
-        
     </div>
-    <div class="game-bar">
-        <button class="button start" @onclick="@(e => game.StartGame())">START</button>
-        <button class="button rotate" @onclick="@(e => game.SetupRotate = !game.SetupRotate)">ROTATE</button>
-        <button class="button custom-reset" @onclick="@(e => game.RemoveLastFriendlyShip())">REMOVE LAST</button>
-        <button class="button custom-reset" @onclick="@(e => game.ResetSetup())">SETUP RST</button>
-        <button class="button random" @onclick="@(e => game.RandomSetup())">RANDOM</button>
-    </div>
-</dif>
+    @if (game.GameState == Game.GameStateType.GameOver)
+    {
+        string gameOverMessage = "You won!";
+        game.EvaluateGameOver();
+        <div class="game-over-window">
+            <div class="game-over-box">
+                <div class="game-over">
+                @if (game.GameOver == Game.GameOverType.Lose) { gameOverMessage = "You lost!"; }
+                @if (game.GameOver == Game.GameOverType.Draw) { gameOverMessage = "Draw!"; }
+                <h1 id="@game.GetGameOverString()">
+                    @gameOverMessage
+                </h1>
+                <div class="play-again" @onclick="@(e => game.ResetGame())"><h3 id="add-ship">Play again</h3></div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
 @code {
 
-    Game game = new Game(Game.DifficultyType.Easy);
+    Game game = new Game();
 }
