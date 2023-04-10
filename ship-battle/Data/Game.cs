@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using static ship_battle.Data.PlayerBoard;
 using static ship_battle.Data.Ship;
+using ship_battle.Data.ComputerPlayerData;
 
 namespace ship_battle.Data
 {
     public class Game
     {
+        ComputerPlayer computerPlayer;
         public int RoundNum { get; set; }
         public bool[,] BoardSetupHoverArray { get; private set; }
         public bool SetupRotate { get; set; }
@@ -25,12 +27,6 @@ namespace ship_battle.Data
             Draw,
 
         }
-        public DifficultyType Difficulty { get; private set; }
-        public enum DifficultyType
-        {
-            Easy,
-            Hard,
-        }
         public PlayerBoard EnemyBoard { get; set; }
         public PlayerBoard FriendlyBoard { get; set; }
         public Game()
@@ -38,35 +34,48 @@ namespace ship_battle.Data
             BoardSetupHoverArray = new bool[BOARD_SIZE, BOARD_SIZE];
             SetupRotate = false;
             GameState = GameStateType.Setup;
-            Difficulty = DifficultyType.Easy;
             EnemyBoard = new PlayerBoard(PlayerType.Enemy);
             FriendlyBoard = new PlayerBoard(PlayerType.Friendly);
             RoundNum = 0;
             RandStringNum enemySeed = new(30);
             Console.WriteLine(enemySeed);
             EnemyBoard.Populate(enemySeed);
+            computerPlayer = new(FriendlyBoard);
         }
-        public void BoardClick(int col, int row, PlayerBoard playerBoard)
+        public void BoardClick(int col, int row, bool isEnemyGrid)
         {
-            if (GameState == GameStateType.Ready && RoundNum % 2 == 0) {
-                SquareType currType = playerBoard.Hit(col, row);
+            // game over mode
+            if (GameState == GameStateType.GameOver) { return; }
+            // setup mode
+            if (GameState == GameStateType.Setup)
+            {
+                if (isEnemyGrid) { return; }
+                foreach (ShipType shipType in Enum.GetValues(typeof(ShipType)))
+                {
+                    if (shipType == ShipType.None) continue;
+                    if (FriendlyBoard.IsAlreadyAdded(shipType)) { continue; }
+                    FriendlyBoard.AddShip(new Ship(shipType, col, row, SetupRotate));
+                    return;
+                }
+                return;
+            }
+            // friendly turn
+            if (RoundNum % 2 == 0 && isEnemyGrid) {
+                SquareType currType = EnemyBoard.Hit(col, row);
                 if (currType == SquareType.NewMiss
                     || currType == SquareType.NewHit)
                 {
                     RoundNum++;
                 }
-                if (RoundNum % 2 == 0 && playerBoard.IsEveryShipSunk()) { GameState = GameStateType.GameOver; }
             }
-            if (GameState == GameStateType.Setup) 
+            // enemy turn
+            if (RoundNum % 2 == 1)
             {
-                foreach (ShipType shipType in Enum.GetValues(typeof(ShipType)))
-                {
-                    if (shipType == ShipType.None) continue;
-                    if (playerBoard.IsAlreadyAdded(shipType)) { continue; }
-                    playerBoard.AddShip(new Ship(shipType, col, row, SetupRotate));
-                    return;
-                }
+                computerPlayer.PlayTurn();
+                RoundNum++;
+                if (EnemyBoard.IsEveryShipSunk() || FriendlyBoard.IsEveryShipSunk()) { GameState = GameStateType.GameOver; }
             }
+            
         }
         public void ClearBoard(PlayerBoard board)
         {
@@ -120,14 +129,17 @@ namespace ship_battle.Data
         {
             ClearBoard(FriendlyBoard);
             ClearBoard(EnemyBoard);
+            GameState = GameStateType.Setup;
+            EnemyBoard = new PlayerBoard(PlayerType.Enemy);
+            FriendlyBoard = new PlayerBoard(PlayerType.Friendly);
+            RoundNum = 0;
             RandStringNum enemySeed = new(30);
             Console.WriteLine(enemySeed);
             EnemyBoard.Populate(enemySeed);
-            RoundNum = 0;
+            computerPlayer = new(FriendlyBoard);
         }
         public void BoardSetupHover(int col, int row)
         {
-            BoardSetupReset();
             if (GameState != GameStateType.Setup) { return; }
             ShipType nextShip = IsEveryFriendlyShipAdded();
             if (nextShip == ShipType.None) { return; }

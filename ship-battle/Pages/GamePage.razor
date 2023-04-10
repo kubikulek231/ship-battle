@@ -103,7 +103,8 @@
                         hover = "hover";
                     }
                     <div class="game-board-square friendly @hover" style="--origin-col: @temp_col; --origin-row: @temp_row"
-                  @onmouseover="@(e => game.BoardSetupHover(temp_col-1, temp_row-1))" @onmouseleave="@(e => game.BoardSetupReset())">
+                  @onmouseover="@(e => game.BoardSetupHover(temp_col-1, temp_row-1))" @onmouseleave="@(e => game.BoardSetupReset())"
+                 @onclick="@(e => game.BoardClick(temp_col-1, temp_row-1, false))">
                     </div>
                 }
             }
@@ -142,7 +143,7 @@
                     var temp_row = row + 1;
 
                     <div class="game-board-square enemy" style="--origin-col: @temp_col; --origin-row: @temp_row"
-                 @onclick="@(e => game.BoardClick(temp_col-1, temp_row-1, game.EnemyBoard))">
+                 @onclick="@(e => game.BoardClick(temp_col-1, temp_row-1, true))">
                     </div>
                 }
             }
@@ -195,6 +196,6 @@
 </div>
 
 @code {
-
     Game game = new Game();
+    
 }

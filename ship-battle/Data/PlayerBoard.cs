@@ -1,4 +1,5 @@
 ﻿
+using System.Reflection.Metadata.Ecma335;
 using static ship_battle.Data.Ship;
 
 namespace ship_battle.Data
@@ -160,6 +161,13 @@ namespace ship_battle.Data
         public bool RemoveShip(Ship ship)
         {
             return Ships.Remove(ship);
+        }
+        public int GetNumSunk()
+        {
+            int i = 0;
+            if (Ships.Count == 0) { return 0; }
+            foreach (Ship ship in Ships) { if (ship.IsSunk()) { i++; } }
+            return i;
         }
     }
 }

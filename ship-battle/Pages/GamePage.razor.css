@@ -285,6 +285,7 @@ h3 {
     align-items: center;
     align-content: center;
 }
+
 .game-over-box {
     width: 500px;
     height: 180px;
@@ -329,12 +330,13 @@ h3 {
         background-color: grey;
     }
     .btn.setup:hover {
-        background-color: #279cff;
+        background-color: grey;
     }
     .btn.setup:active {
         transition: unset;
         transform: unset;
     }
+
     .btn:hover {
         transition: 0.3s;
         background-color: #469eff;

@@ -290,6 +290,7 @@ h3[b-j8u5poay1t] {
     align-items: center;
     align-content: center;
 }
+
 .game-over-box[b-j8u5poay1t] {
     width: 500px;
     height: 180px;
@@ -334,12 +335,13 @@ h3[b-j8u5poay1t] {
         background-color: grey;
     }
     .btn.setup:hover[b-j8u5poay1t] {
-        background-color: #279cff;
+        background-color: grey;
     }
     .btn.setup:active[b-j8u5poay1t] {
         transition: unset;
         transform: unset;
     }
+
     .btn:hover[b-j8u5poay1t] {
         transition: 0.3s;
         background-color: #469eff;
